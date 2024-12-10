@@ -6,15 +6,19 @@ const getChecksum = async () => {
   let blocks = [];
   let index = 0;
 
-  data.split('').forEach((char, i) => {
-    const count = parseInt(char, 10);
+  for (let i = 0; i < data.length; i++) {
+    const count = parseInt(data[i], 10);
     if (i % 2 === 0) {
-      blocks = blocks.concat(Array(count).fill(index));
+      for (let j = 0; j < count; j++) {
+        blocks.push(index);
+      }
       index += 1;
     } else {
-      blocks = blocks.concat(Array(count).fill('.'));
+      for (let j = 0; j < count; j++) {
+        blocks.push('.');
+      }
     }
-  });
+  }
 
   let lastIndex = blocks.length - 1;
   blocks = blocks.map((block, i) => {
